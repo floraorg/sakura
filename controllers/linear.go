@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"strings"
 
 	"github.com/floraorg/sakura/helpers"
 	"github.com/gin-gonic/gin"
@@ -14,45 +13,39 @@ import (
 func Linear(c *gin.Context) {
 	name := c.Param("name")
 
-	// Get the raw query string
-	rawQuery := c.Request.URL.RawQuery
+	params := helpers.ParseQueryString(c.Request.URL.RawQuery)
 
-	// Manual query parsing
-	size := 192
-	text := ""
-
-	if rawQuery != "" {
-		params := strings.Split(rawQuery, "?")
-		for _, param := range params {
-			if strings.Contains(param, "=") {
-				parts := strings.Split(param, "=")
-				key := parts[0]
-				value := parts[1]
-
-				switch key {
-				case "size":
-					if parsedSize, err := strconv.Atoi(value); err == nil && parsedSize > 0 && parsedSize <= 1000 {
-						size = parsedSize
-					}
-				case "text":
-					text = value
-				}
-			}
-		}
-	}
-
-	// Generate colors
 	_, c1, c2 := helpers.GenerateUniqueColors(name)
 
-	// Create text element if needed
+	size := 192
+	rounded := false
+	text := ""
+
+	if val, exists := params["size"]; exists {
+		if parsedSize, err := strconv.Atoi(val); err == nil && parsedSize > 0 && parsedSize <= 1000 {
+			size = parsedSize
+		}
+	}
+	if val, exists := params["text"]; exists {
+		text = val
+	}
+	if _, exists := params["rounded"]; exists {
+		rounded = true
+	}
+
 	textElement := ""
 	if text != "" {
 		fontSize := size / 3
 		if len(text) > 2 {
-			fontSize = size / (len(text)/2 + 1)
+			fontSize = size / (len(text) / 2 * 3)
 		}
 		textElement = fmt.Sprintf(`<text x="%d" y="%d" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="system-ui, sans-serif" font-weight="bold" font-size="%dpx">%s</text>`,
 			size/2, size/2, fontSize, text)
+	}
+
+	cornerRadius := 0
+	if rounded {
+		cornerRadius = size / 8
 	}
 
 	svg := fmt.Sprintf(`<svg width="%d" height="%d" viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg" style="position:fixed;top:0;left:0;margin:0;padding:0;display:block">
@@ -62,10 +55,11 @@ func Linear(c *gin.Context) {
         <stop offset="100%%" stop-color="%s"/>
     </linearGradient>
 </defs>
-<rect width="%d" height="%d" fill="url(#g)"/>%s</svg>`,
+<rect width="%d" height="%d" rx="%d" ry="%d" fill="url(#g)"/>%s</svg>`,
 		size, size, size, size,
 		c1, c2,
 		size, size,
+		cornerRadius, cornerRadius,
 		textElement)
 
 	c.Header("Content-Type", "image/svg+xml")

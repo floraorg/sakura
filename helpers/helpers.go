@@ -1,6 +1,9 @@
 package helpers
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func HashString(str string) int {
 	hash := 0
@@ -29,4 +32,32 @@ func GenerateUniqueColors(username string) (col1 string, col2 string, background
 	col2B := (b * 2) % 255
 
 	return fmt.Sprintf("rgb(%d, %d, %d)", backgroundR, backgroundG, backgroundB), fmt.Sprintf("rgb(%d, %d, %d)", col1R, col1G, col1B), fmt.Sprintf("rgb(%d, %d, %d)", col2R, col2G, col2B)
+}
+
+func ParseQueryString(rawQuery string) map[string]string {
+	params := make(map[string]string)
+
+	if rawQuery == "" {
+		return params
+	}
+
+	queryParts := strings.Split(rawQuery, "?")
+
+	for _, part := range queryParts {
+		if !strings.Contains(part, "=") {
+			continue
+		}
+
+		keyValue := strings.Split(part, "=")
+		if len(keyValue) != 2 {
+			continue
+		}
+
+		key := keyValue[0]
+		value := keyValue[1]
+
+		params[key] = value
+	}
+
+	return params
 }
