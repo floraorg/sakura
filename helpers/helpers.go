@@ -65,3 +65,11 @@ func ParseQueryString(rawQuery string) map[string]string {
 
 	return params
 }
+
+func SumASCII(s string) int {
+	sum := 0
+	for _, c := range s {
+		sum += int(c)
+	}
+	return sum
+}

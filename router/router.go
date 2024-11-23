@@ -16,6 +16,8 @@ func SetupRouter() *gin.Engine {
 	r.GET("/grid/:name", controllers.Grid)
 	r.GET("/colors/:name", controllers.Colors)
 	r.GET("/static/:name", controllers.Static)
+	r.GET("/floral/:name", controllers.Floral)
+	r.GET("/spectra/:name", controllers.Spectra)
 
 	return r
 }
