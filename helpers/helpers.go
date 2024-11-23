@@ -41,14 +41,18 @@ func ParseQueryString(rawQuery string) map[string]string {
 		return params
 	}
 
-	queryParts := strings.Split(rawQuery, "?")
+	if strings.HasPrefix(rawQuery, "?") {
+		rawQuery = rawQuery[1:]
+	}
 
-	for _, part := range queryParts {
-		if !strings.Contains(part, "=") {
+	pairs := strings.Split(rawQuery, "&")
+
+	for _, pair := range pairs {
+		if !strings.Contains(pair, "=") {
 			continue
 		}
 
-		keyValue := strings.Split(part, "=")
+		keyValue := strings.SplitN(pair, "=", 2)
 		if len(keyValue) != 2 {
 			continue
 		}
