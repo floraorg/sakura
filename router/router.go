@@ -15,6 +15,7 @@ func SetupRouter() *gin.Engine {
 	r.GET("/astra/:name", controllers.Astra)
 	r.GET("/grid/:name", controllers.Grid)
 	r.GET("/colors/:name", controllers.Colors)
+	r.GET("/static/:name", controllers.Static)
 
 	return r
 }
