@@ -18,7 +18,6 @@ func Linear(c *gin.Context) {
 	_, c1, c2 := helpers.GenerateUniqueColors(name)
 
 	size := 192
-	rounded := false
 	text := ""
 
 	if val, exists := params["size"]; exists {
@@ -28,9 +27,6 @@ func Linear(c *gin.Context) {
 	}
 	if val, exists := params["text"]; exists {
 		text = val
-	}
-	if _, exists := params["rounded"]; exists {
-		rounded = true
 	}
 
 	textElement := ""
@@ -43,11 +39,6 @@ func Linear(c *gin.Context) {
 			size/2, size/2, fontSize, text)
 	}
 
-	cornerRadius := 0
-	if rounded {
-		cornerRadius = size / 8
-	}
-
 	svg := fmt.Sprintf(`<svg width="%d" height="%d" viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg" style="position:fixed;top:0;left:0;margin:0;padding:0;display:block">
 <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
@@ -55,11 +46,10 @@ func Linear(c *gin.Context) {
         <stop offset="100%%" stop-color="%s"/>
     </linearGradient>
 </defs>
-<rect width="%d" height="%d" rx="%d" ry="%d" fill="url(#g)"/>%s</svg>`,
+<rect width="%d" height="%d" fill="url(#g)"/>%s</svg>`,
 		size, size, size, size,
 		c1, c2,
 		size, size,
-		cornerRadius, cornerRadius,
 		textElement)
 
 	c.Header("Content-Type", "image/svg+xml")

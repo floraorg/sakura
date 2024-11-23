@@ -18,7 +18,6 @@ func Plain(c *gin.Context) {
 	_, _, c1 := helpers.GenerateUniqueColors(name)
 
 	size := 192
-	rounded := false
 	text := ""
 
 	if val, exists := params["size"]; exists {
@@ -28,9 +27,6 @@ func Plain(c *gin.Context) {
 	}
 	if val, exists := params["text"]; exists {
 		text = val
-	}
-	if _, exists := params["rounded"]; exists {
-		rounded = true
 	}
 
 	textElement := ""
@@ -43,15 +39,10 @@ func Plain(c *gin.Context) {
 			size/2, size/2, fontSize, text)
 	}
 
-	cornerRadius := 0
-	if rounded {
-		cornerRadius = size / 8
-	}
-
 	svg := fmt.Sprintf(`<svg width="%d" height="%d" viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg" style="position:fixed;top:0;left:0;margin:0;padding:0;display:block">
-<rect width="%d" height="%d" rx="%d" ry="%d" fill="%s"/>%s</svg>`,
+<rect width="%d" height="%d" fill="%s"/>%s</svg>`,
 		size, size, size, size,
-		size, size, cornerRadius, cornerRadius, c1,
+		size, size, c1,
 		textElement)
 
 	c.Header("Content-Type", "image/svg+xml")
