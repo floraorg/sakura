@@ -69,7 +69,7 @@ func Static(c *gin.Context) {
 			background, background,
 			size/2, size/2, size)
 
-		textElement = fmt.Sprintf("<text x=\"%d\" y=\"%d\" font-size=\"%d\" font-weight=\"bold\" fill=\"%s\" font-family=\"Arial, Helvetica, sans-serif\" text-anchor=\"middle\" dominant-baseline=\"middle\">%s</text>",
+		textElement = fmt.Sprintf("<text x=\"%d\" y=\"%d\" dy=\"0.1em\" font-size=\"%d\" font-weight=\"bold\" fill=\"%s\" font-family=\"Arial, Helvetica, sans-serif\" text-anchor=\"middle\" dominant-baseline=\"middle\">%s</text>",
 			size/2, size/2, fontSize, "white", text)
 	}
 

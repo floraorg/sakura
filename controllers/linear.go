@@ -35,7 +35,7 @@ func Linear(c *gin.Context) {
 		if len(text) > 2 {
 			fontSize = size / (len(text) / 2 * 3)
 		}
-		textElement = fmt.Sprintf(`<text x="%d" y="%d" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="system-ui, sans-serif" font-weight="bold" font-size="%dpx">%s</text>`,
+		textElement = fmt.Sprintf(`<text x="%d" y="%d" dy="0.1em" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="system-ui, sans-serif" font-weight="bold" font-size="%dpx">%s</text>`,
 			size/2, size/2, fontSize, text)
 	}
 

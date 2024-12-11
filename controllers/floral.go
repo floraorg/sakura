@@ -76,7 +76,7 @@ func Floral(c *gin.Context) {
 		gradientOverlay = fmt.Sprintf("<defs><radialGradient id=\"textBackground\" cx=\"50%%\" cy=\"50%%\" r=\"50%%\"><stop offset=\"0%%\" style=\"stop-color:%s;stop-opacity:0.5\"/><stop offset=\"100%%\" style=\"stop-color:%s;stop-opacity:0.5\"/></radialGradient></defs><circle cx=\"%d\" cy=\"%d\" r=\"%d\" fill=\"url(#textBackground)\"/>",
 			background, background,
 			size/2, size/2, size)
-		textElement = fmt.Sprintf(`<text x="%d" y="%d" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="system-ui, sans-serif" font-weight="bold" font-size="%dpx">%s</text>`,
+		textElement = fmt.Sprintf(`<text x="%d" y="%d" dy="0.1em" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="system-ui, sans-serif" font-weight="bold" font-size="%dpx">%s</text>`,
 			size/2, size/2, fontSize, text)
 	}
 

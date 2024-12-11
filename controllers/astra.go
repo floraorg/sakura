@@ -68,7 +68,7 @@ func Astra(c *gin.Context) {
 			<circle cx="%d" cy="%d" r="%d" fill="url(#textBackground)"/>`,
 			size, size, size)
 
-		textElement = fmt.Sprintf(`<text x="%d" y="%d" font-size="%d" fill="white" 
+		textElement = fmt.Sprintf(`<text x="%d" y="%d" dy="0.1em" font-size="%d" fill="white" 
 			font-family="Arial, Helvetica, sans-serif" font-weight="bold"
 			text-anchor="middle" dominant-baseline="middle">%s</text>`,
 			size/2, size/2, fontSize, text)

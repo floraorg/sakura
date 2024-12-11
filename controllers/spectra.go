@@ -76,7 +76,7 @@ func Spectra(c *gin.Context) {
 			background, background,
 			size/2, size/2, size/3)
 
-		textElement = fmt.Sprintf(`<text x="%d" y="%d" 
+		textElement = fmt.Sprintf(`<text x="%d" y="%d" dy="0.1em" 
 			text-anchor="middle" dominant-baseline="middle" 
 			fill="white" font-family="system-ui, sans-serif" 
 			font-weight="bold" font-size="%dpx">%s</text>`,
