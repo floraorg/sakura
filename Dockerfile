@@ -6,13 +6,13 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -o faux .
+RUN CGO_ENABLED=0 GOOS=linux go build -o sakura .
 
 FROM alpine:latest
 
 WORKDIR /app
 
-COPY --from=builder /app/faux .
+COPY --from=builder /app/sakura .
 COPY --from=builder /app/views ./views
 COPY --from=builder /app/.env ./.env
 
@@ -20,4 +20,4 @@ ENV GIN_MODE=release
 
 EXPOSE ${PORT}
 
-CMD ["sh", "-c", "./faux"] 
+CMD ["sh", "-c", "./sakura"] 
