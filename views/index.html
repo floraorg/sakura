@@ -14,6 +14,11 @@
       padding: 0;
       text-wrap: wrap;
     }
+    
+    body {
+      width: fit-content;
+    }
+    
     html {
       padding: 4rem;
       color: #eee;
@@ -32,31 +37,89 @@
       flex-wrap: wrap;
       align-items: center;
     }
+    
     .title {
       font-size: 1.5rem;
+    }
+    
+    .example-box {
+      padding: 1rem;
+      border-radius: 4px;
+      background: #1a1a1a;
+      font-size: 0.9rem;
+      color: #a3a3a3;
+    }
+    
+    a {
+      color: #eee;
+      transition: color 0.2s ease;
+    }
+    
+    a:hover {
+      color: #fff;
+    }
+    
+    .dim {
+      color: #a3a3a3;
+    }
+    
+    .section-label {
+      margin-bottom: 0.75rem;
     }
   </style>
 </head>
 <body>
   <div class="flex">
-  <img src="/linear/sakuraaa?size=30&text=SK" alt=""> 
-  <p class="title">sakura</p>
+    <img src="/linear/sakuraaa?size=30&text=SK" alt="Sakura Logo" width="30" height="30"> 
+    <p class="title">sakura</p>
   </div>
-  <p style="margin: 1.5rem 0; color: #a3a3a3;">a beautiful, fast, easy to use and <a href="https://github.com/floraorg/sakura" style="color: #eee;">open source</a> avatar generation</a>
+  
+  <p style="margin: 1.5rem 0;" class="dim">a beautiful, fast, easy to use and <a href="https://github.com/floraorg/sakura">open source</a> avatar generation</p>
+  
   <div class="flex2">
-    <a href="/linear/linearrr?text=LN" style="color: #eee;">linear</a>
-    <a href="/astra/astra?text=AT" style="color: #eee;">astra</a>
-    <a href="/floral/florall?text=FL" style="color: #eee;">floral</a>
-    <a href="/plain/plain?text=PL" style="color: #eee;">plain</a>
-    <a href="/static/static?text=ST" style="color: #eee;">static</a>
-    <a href="/spectra/spectra?text=SP" style="color: #eee;">spectra</a>
-    <a href="/grid/gridd?text=GR" style="color: #eee;">grid</a>
+    <img src="/linear/linearrr?text=LN&size=60" alt="Linear avatar example">
+    <img src="/astra/astra?text=AT&size=60" alt="Astra avatar example">
+    <img src="/floral/florall?text=FL&size=60" alt="Floral avatar example">
   </div>
-  <p style="margin-top: 1.5rem; color: #a3a3a3;">only want the colors? <a href="/colors/nam" style="color: #eee;">go here!</a></p>
-  <p style="margin: 3rem 0 1rem 0; color: #a3a3a3;">brought to you by the <a href="https://github.com/floraorg" style="color: #eee;">flora</a> team</a>
-    <div class="flex">
-      <img src="/linear/namishh?text=NM&size=36" alt="">
-      <img src="/linear/rexdotsh?text=RX&size=36" alt="">
+
+  <div style="margin-top: 1.5rem;">
+    <p class="dim section-label">styles:</p>
+    <div class="flex2">
+      <a href="/linear/linearrr?text=LN">linear</a>
+      <a href="/astra/astra?text=AT">astra</a>
+      <a href="/floral/florall?text=FL">floral</a>
+      <a href="/plain/plain?text=PL">plain</a>
+      <a href="/static/static?text=ST">static</a>
+      <a href="/spectra/spectra?text=SP">spectra</a>
+      <a href="/grid/gridd?text=GR">grid</a>
     </div>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <p class="dim section-label">examples:</p>
+    <div class="example-box">
+      <p>/linear/username?text=UN&size=60</p>
+      <p>/astra/username?text=UN&size=100</p>
+      <p>/floral/username?text=FL&size=80&bg=ff5500</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <p class="dim section-label">usage:</p>
+    <div class="example-box">
+      <p>/:style/:seed # basic avatar</p>
+      <p>/:style/:seed?text=XX # custom text</p>
+      <p>/:style/:seed?size=N # custom size</p>
+      <p>/:style/:seed?bg=hexcolor # custom background</p>
+    </div>
+  </div>
+
+  <p style="margin-top: 1.5rem;" class="dim">only want the colors? <a href="/colors/nam">go here!</a></p>
+  
+  <p style="margin: 3rem 0 1rem 0;" class="dim">brought to you by the <a href="https://github.com/floraorg">flora</a> team</p>
+  <div class="flex">
+    <img src="/linear/namishh?text=NM&size=36" alt="namishh" width="36" height="36">
+    <img src="/linear/rexdotsh?text=RX&size=36" alt="rex" width="36" height="36">
+  </div>
 </body>
 </html>
